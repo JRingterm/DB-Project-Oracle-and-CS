@@ -1,0 +1,44 @@
+GHWNS9991>CREATE SEQUENCE book_no
+  2  INCREMENT BY 1
+  3  START WITH 1
+  4  MAXVALUE 50
+  5  NOCYCLE
+  6  NOCACHE;
+
+시퀀스가 생성되었습니다.
+
+GHWNS9991>CREATE SEQUENCE basket_no
+  2  INCREMENT BY 1
+  3  START WITH 1
+  4  MAXVALUE 20
+  5  NOCYCLE
+  6  NOCACHE;
+
+시퀀스가 생성되었습니다.
+
+GHWNS9991>CREATE SEQUENCE order_no
+  2  INCREMENT BY 1
+  3  START WITH 1
+  4  MAXVALUE 100
+  5  NOCYCLE
+  6  NOCACHE;
+
+시퀀스가 생성되었습니다.
+
+GHWNS9991>commit;
+
+커밋이 완료되었습니다.
+
+GHWNS9991>spool off
+
+1. 시퀀스 증가시켜서 값 확인
+select 시퀀스이름.NEXTVAL from dual;
+
+2. 그 값만큼 마이너스되도록 수정
+alter sequence 시퀀스이름 increment by 증가된 값 minvalue 0;
+
+3. 증가시켜서 0이되는것을 확인
+select 시퀀스이름.NEXTVAL from dual;
+
+4. 1만큼 증가되도록 수정
+alter sequence 시퀀스이름 increment by 1 minvalue 0;

@@ -1,0 +1,32 @@
+GHWNS9991>CREATE SEQUENCE book_no
+  2  INCREMENT BY 1
+  3  START WITH 1
+  4  MAXVALUE 50
+  5  NOCYCLE
+  6  NOCACHE;
+
+시퀀스가 생성되었습니다.
+
+GHWNS9991>CREATE SEQUENCE basket_no
+  2  INCREMENT BY 1
+  3  START WITH 1
+  4  MAXVALUE 20
+  5  NOCYCLE
+  6  NOCACHE;
+
+시퀀스가 생성되었습니다.
+
+GHWNS9991>CREATE SEQUENCE order_no
+  2  INCREMENT BY 1
+  3  START WITH 1
+  4  MAXVALUE 100
+  5  NOCYCLE
+  6  NOCACHE;
+
+시퀀스가 생성되었습니다.
+
+GHWNS9991>commit;
+
+커밋이 완료되었습니다.
+
+GHWNS9991>spool off

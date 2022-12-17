@@ -1,0 +1,278 @@
+GHWNS9991>select * from 회원
+  2  ;
+
+선택된 레코드가 없습니다.
+
+GHWNS9991>CREATE TABLE 회원주소록 (
+  2  회원번호 VARCHAR(10) NOT NULL,
+  3  배송지 VARCHAR(10) NOT NULL,
+  4  우편번호 VARCHAR(10) NOT NULL,
+  5  기본주소 VARCHAR(100) NOT NULL,
+  6  상세주소 VARCHAR(100) NOT NULL,
+  7  CONSTRAINT 회원주소록_PK PRIMARY KEY (회원번호, 배송지),
+  8  CONSTRAINT 회원주소록_회원_FK FOREIGN KEY((회원번호)) REFERENCES 회원(회원번호),
+  9  CONSTRAINT 회원주소록_CK CHECK (배송지 IN ('집','직장')));
+
+테이블이 생성되었습니다.
+
+GHWNS9991>CREATE TABLE 회원신용카드 (
+  2  회원번호 VARCHAR(10) NOT NULL,
+  3  카드번호 VARCHAR(20) NOT NULL,
+  4  유효기간 DATETIME NOT NULL,
+  5  카드종류 VARCHAR(10) NOT NULL,
+  6  CONSTRAINT 회원신용카드_PK PRIMARY KEY (회원번호, 카드번호),
+  7  CONSTRAINT 회원신용카드_회원_FK FOREIGN KEY(회원(회원번원번호) REFERENCES 회원(회원번호));
+CONSTRAINT 회원신용카드_회원_FK FOREIGN KEY(회원(회원번원번호) REFERENCES 회원(회원번호))
+                                            *
+7행에 오류:
+ORA-00904: : 부적합한 식별자 
+
+
+GHWNS9991>CREATE TABLE 회원신용카드 (
+  2  회원번호 VARCHAR(10) NOT NULL,
+  3  카드번호 VARCHAR(20) NOT NULL,
+  4  유효기간 DATETIME NOT NULL,
+  5  카드종류 VARCHAR(10) NOT NULL,
+  6  CONSTRAINT 회원신용카드_PK PRIMARY KEY (회원번호, 카드번호),
+  7  CONSTRAINT 회원신용카드_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호)););
+CONSTRAINT 회원신용카드_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호));)
+                                                                                *
+7행에 오류:
+ORA-00911: 문자가 부적합합니다 
+
+
+GHWNS9991>CREATE TABLE 회원신용카드 (
+  2  회원번호 VARCHAR(10) NOT NULL,
+  3  카드번호 VARCHAR(20) NOT NULL,
+  4  유효기간 DATETIME NOT NULL,
+  5  
+GHWNS9991>CREATE TABLE 회원신용카드 (
+  2  회원번호 VARCHAR(10) NOT NULL,
+  3  카드번호 VARCHAR(20) NOT NULL,
+  4  유효기간 DATETIME NOT NULL,
+  5  카드종류 VARCHAR(10) NOT NULL,
+  6  CONSTRAINT 회원신용카드_PK PRIMARY KEY (회원번호, 카드번호),
+  7  CONSTRAINT 회원신용카드_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호));
+유효기간 DATETIME NOT NULL,
+         *
+4행에 오류:
+ORA-00902: 데이터유형이 부적합합니다 
+
+
+GHWNS9991>CREATE TABLE 회원신용카드 (
+  2  회원번호 VARCHAR(10) NOT NULL,
+  3  카드번호 VARCHAR(20) NOT NULL,
+  4  유효기간 DATE NOT NULL,
+  5  카드종류 VARCHAR(10) NOT NULL,
+  6  CONSTRAINT 회원신용카드_PK PRIMARY KEY (회원번호, 카드번호),
+  7  CONSTRAINT 회원신용카드_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호));
+
+테이블이 생성되었습니다.
+
+GHWNS9991>
+GHWNS9991>select * from information_schema.table_constraints where table_name = 회원주소록;
+select * from information_schema.table_constraints where table_name = 회원주소록
+                                 *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다 
+
+
+GHWNS9991>select * from information_schema.table_constraints where constraint_schema = 회원주소록_회원_FK;
+select * from information_schema.table_constraints where constraint_schema = 회원주소록_회원_FK
+                                 *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다 
+
+
+GHWNS9991>alt
+SP2-0042: 알 수 없는 명령어 "alt" - 나머지 줄 무시.
+GHWNS9991>alter table 회원주소록 MODIFY (회원주소록_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호));
+alter table 회원주소록 MODIFY (회원주소록_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호))
+                                                          *
+1행에 오류:
+ORA-00907: 누락된 우괄호 
+
+
+GHWNS9991>alter table 회원주소록 MODIFY (회원주소록_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호));
+alter table 회원주소록 MODIFY (회원주소록_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호))
+                                                          *
+1행에 오류:
+ORA-00907: 누락된 우괄호 
+
+
+GHWNS9991>alter table 회원주소록 DROP CONSTRAINT 회원주소록_회원_FK;
+
+테이블이 변경되었습니다.
+
+GHWNS9991>alter table 회원주소록 ADD CONSTRAINT 회원주소록_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호);
+
+테이블이 변경되었습니다.
+
+GHWNS9991>CREATE TABLE 도서 (
+  2  도서번호 VARCHAR(10) NOT NULL,
+  3  도서명 VARCHAR(30) NOT NULL,
+  4  재고량 INTEGER NOT NULL,
+  5  판매가 INTEGER NOT NULL,
+  6  CONSTRAINT 도서_PK PRIMARY KEY (도서번호));
+
+테이블이 생성되었습니다.
+
+GHWNS9991>CREATE TABLE 주문선택(
+  2  주문번호 VARCHAR(20) NOT NULL,
+  3  도서번호 VARCHAR(10) NOT NULL,
+  4  수량 INTEGER NOT NULL,
+  5  CONSTRAINT 주문선택_PK PRIMARY KEY (주문번호, 도서번호),
+  6  CONSTRAINT 주문선택_주문_FK FOREIGN KEY(주문번호) REFERENCES 주문(주문번호),
+  7  CONSTRAINT 주문선택_도서_FK FOREIGN KEY(도서번호) REFERENCES 도서(도서번호),
+  8  CONSTRAINT 주문선택_CK CHECK (수량 >= 1));
+CONSTRAINT 주문선택_주문_FK FOREIGN KEY(주문번호) REFERENCES 주문(주문번호),
+                                                             *
+6행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다 
+
+
+GHWNS9991>CREATE TABLE 주문(
+  2  주문번호 VARCHAR(20) NOT NULL,
+  3  주문일자 DATE NOT NULL,
+  4  주문총액 INTEGER NOT NULL,
+  5  주문상태 VARCHAR(10) NOT NULL,
+  6  신용카드_카드번호 VARCHAR(20) NOT NULL,
+  7  신용카드_유효기간 DATE NOT NULL,
+  8  신용카드_카드종류 VARCHAR(10) NOT NULL,
+  9  배송지_우편번호 VARCHAR(10) NOT NULL,
+ 10  배송지_기본주소 VARCHAR(100) NOT NULL,
+ 11  배송지_상세주소 VARCHAR(100) NOT NULL,
+ 12  회원번호 VARCHAR(10) NOT NULL,
+ 13  CONSTRAINT 주문_PK PRIMARY KEY (주문번호),
+ 14  CONSTRAINT 주문_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호),
+ 15  CONSTRAINT 주문_상태CK CHECK (주문상태 IN ('신청', '발송', '판매완료'));
+CONSTRAINT 주문_상태CK CHECK (주문상태 IN ('신청', '발송', '판매완료'))
+                                                                      *
+15행에 오류:
+ORA-00907: 누락된 우괄호 
+
+
+GHWNS9991>CREATE TABLE 주문(
+  2  주문번호 VARCHAR(20) NOT NULL,
+  3  주문일자 DATE NOT NULL,
+  4  주문총액 INTEGER NOT NULL,
+  5  주문상태 VARCHAR(10) NOT NULL,
+  6  신용카드_카드번호 VARCHAR(20) NOT NULL,
+  7  신용카드_유효기간 DATE NOT NULL,
+  8  신용카드_카드종류 VARCHAR(10) NOT NULL,
+  9  배송지_우편번호 VARCHAR(10) NOT NULL,
+ 10  배송지_기본주소 VARCHAR(100) NOT NULL,
+ 11  배송지_상세주소 VARCHAR(100) NOT NULL,
+ 12  회원번호 VARCHAR(10) NOT NULL,
+ 13  CONSTRAINT 주문_PK PRIMARY KEY (주문번호),
+ 14  CONSTRAINT 주문_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호),
+ 15  CONSTRAINT 주문_상태CK CHECK (주문상태 IN ('신청', '발송', '판매완료'));
+CONSTRAINT 주문_상태CK CHECK (주문상태 IN ('신청', '발송', '판매완료'))
+                                                                      *
+15행에 오류:
+ORA-00907: 누락된 우괄호 
+
+
+GHWNS9991>CREATE TABLE 주문(
+  2  주문번호 VARCHAR(20) NOT NULL,
+  3  주문일자 DATE NOT NULL,
+  4  주문총액 INTEGER NOT NULL,
+  5  주문상태 VARCHAR(10) NOT NULL,
+  6  신용카드_카드번호 VARCHAR(20) NOT NULL,
+  7  신용카드_유효기간 DATE NOT NULL,
+  8  신용카드_카드종류 VARCHAR(10) NOT NULL,
+  9  배송지_우편번호 VARCHAR(10) NOT NULL,
+ 10  배송지_기본주소 VARCHAR(100) NOT NULL,
+ 11  배송지_상세주소 VARCHAR(100) NOT NULL,
+ 12  회원번호 VARCHAR(10) NOT NULL,
+ 13  CONSTRAINT 주문_PK PRIMARY KEY (주문번호),
+ 14  CONSTRAINT 주문_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호),
+ 15  CONSTRAINT 주문_상태CK CHECK (주문상태 IN ('신청','발송','판매완료'));
+CONSTRAINT 주문_상태CK CHECK (주문상태 IN ('신청','발송','판매완료'))
+                                                                    *
+15행에 오류:
+ORA-00907: 누락된 우괄호 
+
+
+GHWNS9991>CREATE TABLE 주문(
+  2    2  주문번호 VARCHAR(20) NOT NULL,
+  3    3  주문일자 DATE NOT NULL,
+  4    4  주문총액 INTEGER NOT NULL,
+  5    5  주문상태 VARCHAR(10) NOT NULL,
+  6    6  신용카드_카드번호 VARCHAR(20) NOT NULL,
+  7    7  신용카드_유효기간 DATE NOT NULL,
+  8    8  신용카드_카드종류 VARCHAR(10) NOT NULL,
+  9    9  배송지_우편번호 VARCHAR(10) NOT NULL,
+ 10   10  배송지_기본주소 VARCHAR(100) NOT NULL,
+ 11   11  배송지_상세주소 VARCHAR(100) NOT NULL,
+ 12   12  회원번호 VARCHAR(10) NOT NULL,
+ 13   13  CONSTRAINT 주문_PK PRIMARY KEY (주문번호),
+ 14   14  CONSTRAINT 주문_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호),
+ 15   15  CONSTRAINT 주문_상태CK CHECK (주문상태 IN ('신청
+ 16  
+GHWNS9991>CREATE TABLE 주문(
+  2  주문번호 VARCHAR(20) NOT NULL,
+  3  주문일자 DATE NOT NULL,
+  4  주문총액 INTEGER NOT NULL,
+  5  주문상태 VARCHAR(10) NOT NULL,
+  6  신용카드_카드번호 VARCHAR(20) NOT NULL,
+  7  신용카드_유효기간 VARCHAR(20) NOT NULL,        //DATE였다가 뒤늦게 바꿈;
+  8  신용카드_카드종류 VARCHAR(10) NOT NULL,
+  9  배송지_우편번호 VARCHAR(10) NOT NULL,
+ 10  배송지_기본주소 VARCHAR(100) NOT NULL,
+ 11  배송지_상세주소 VARCHAR(100) NOT NULL,
+ 12  회원번호 VARCHAR(10) NOT NULL,
+ 13  CONSTRAINT 주문_PK PRIMARY KEY (주문번호),
+ 14  CONSTRAINT 주문_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호),
+ 15  CONSTRAINT 주문_상태CK CHECK (주문상태 IN ('신청','발송','판매완료')));
+
+테이블이 생성되었습니다.
+
+GHWNS9991>CREATE TABLE 주문선택(
+  2  주문번호 VARCHAR(20) NOT NULL,
+  3  도서번호 VARCHAR(10) NOT NULL,
+  4  수량 INTEGER NOT NULL,
+  5  CONSTRAINT 주문선택_PK PRIMARY KEY (주문번호, 도서번호),
+  6  CONSTRAINT 주문선택_주문_FK FOREIGN KEY(주문번호) REFERENCES 주문(주문번호),
+  7  CONSTRAINT 주문선택_도서_FK FOREIGN KEY(도서번호) REFERENCES 도서(도서번호),
+  8  CONSTRAINT 주문선택_CK CHECK (수량 >= 1));
+
+테이블이 생성되었습니다.
+
+GHWNS9991>CREATE TABLE 장바구니(
+  2  바구니번호 INTEGER NOT NULL,
+  3  
+GHWNS9991>
+GHWNS9991>CREATE TABLE 장바구니(
+  2  바구니번호 INTEGER NOT NULL,
+  3  생성일자 DATE NOT NULL,
+  4  회원번호 VARCHAR(10) NOT NULL,
+  5  CONSTRAINT 장바구니_PK PRIMARY KEY(바구니번호),
+  6  CONSTRAINT 장바구니_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호));
+
+테이블이 생성되었습니다.
+
+GHWNS9991>
+GHWNS9991>CREATE TABLE 장바구니담기(
+  2  바구니번호 INTEGER NOT NULL,
+  3  도서번호 VARCHAR(10) NOT NULL,
+  4  수량 INTEGER NOT NULL,
+  5  CONSTRAINT 장바구니_PK PRIMARY KEY(바구니번호, 도서번호),
+  6  CONSTRAINT 장바구니
+  7  
+GHWNS9991>CREATE TABLE 장바구니담기(
+  2  바구니번호 INTEGER NOT NULL,
+  3  도서번호 VARCHAR(10) NOT NULL,
+  4  수량 INTEGER NOT NULL,
+  5  CONSTRAINT 장바구니담기_PK PRIMARY KEY(바구니번호, 도서번호),
+  6  CONSTRAINT 장바구니담기_장바구니_FK FOREIGN KEY(바구니번호) REFERENCES 장바구니(바구니번호),
+  7  CONSTRAINT 장바구니담기_도서_FK FOREIGN KEY(도서번호) REFERENCES 도서(도서번호));
+
+테이블이 생성되었습니다.
+
+GHWNS9991>commit
+  2  ;
+
+커밋이 완료되었습니다.
+
+GHWNS9991>spool off

@@ -1,0 +1,11 @@
+select * from 장바구니담기 
+WHERE 바구니번호 = 
+(SELECT 바구니번호 from 장바구니 where 회원번호 = 'hihi');
+//회원번호가 hihi인 사람의 바구니번호로 장바구니담기의 모든 값 불러오기
+
+select 바구니번호, 장바구니담기.도서번호, 수량, 도서명, 재고량, 판매가 
+from 장바구니담기, 도서 
+where 장바구니담기.도서번호 = 도서.도서번호;
+//장바구니담기와 도서의 조인연산
+
+INSERT INTO 도서 VALUES (book_no.NEXTVAL, '임시책', 10, 20000);
